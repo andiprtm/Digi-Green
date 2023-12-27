@@ -1,9 +1,8 @@
 import { useContext, useState } from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
-import { PrimaryButton, Separator } from '../../components';
+import { LoadingOverlay, PrimaryButton, Separator } from '../../components';
 import GlobalStyles from '../../styles/GlobalStyles';
 import { HydroponicConfigContext } from '../../config/Context';
-import LoadingOverlay from '../../components/LoadingOverlay';
 
 function PumpStatus({ navigation, route }) {
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
