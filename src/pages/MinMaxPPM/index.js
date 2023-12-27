@@ -57,6 +57,7 @@ function MinMaxPPM({ navigation, route }) {
         placeholder="Minimum PPM"
         value={valuePPM.minimum.toString()}
         onChangeText={(text) => changeMinMaxPPMHandler('minimum', text)}
+        label={"Minimum PPM"}
       />
       <ColoredInput
         label="Maksimum PPM"

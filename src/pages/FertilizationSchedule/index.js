@@ -110,6 +110,7 @@ function Index({navigation, route}) {
             <Separator height={24}/>
 
             <ColoredInput
+                label={"Rentang hari pemupukan"}
                 keyboardType="decimal-pad"
                 placeholder="Masukkan rentang hari pemupukan"
                 value={schedule.numberOfDays}
