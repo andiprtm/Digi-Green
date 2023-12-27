@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import getFormattedTime from '../../utils/time';
-import { PrimaryButton, Separator, TimePickContainer } from '../../components';
+import { LoadingOverlay, PrimaryButton, Separator, TimePickContainer } from '../../components';
 import { HydroponicConfigContext } from '../../config/Context';
-import LoadingOverlay from '../../components/LoadingOverlay';
 
 function PumpActiveHour({ navigation, route }) {
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
