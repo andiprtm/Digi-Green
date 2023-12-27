@@ -25,6 +25,7 @@ function Home({navigation, route}) {
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
+      hydroponicConfigContext.fetchConfig();
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
@@ -32,6 +33,7 @@ function Home({navigation, route}) {
   if (!fontsLoaded) {
     return null;
   }
+
 
   const customStyleStatus = hydroponicConfigContext.config.pumpStatus ? styles.standartStyle : styles.pumpNotActive;
   
