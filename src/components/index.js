@@ -3,7 +3,8 @@ import PrimaryButton from './PrimaryButton';
 import UserInput from './UserInput';
 import TimePickContainer from './TimePickContainer';
 import ColoredInput from './ColoredInput';
-import Loading from "./Loading";
+import Loading from './Loading';
+import LoadingOverlay from './LoadingOverlay';
 
 export {
   Separator,
@@ -11,5 +12,6 @@ export {
   UserInput,
   TimePickContainer,
   ColoredInput,
-  Loading
+  Loading,
+  LoadingOverlay,
 };
