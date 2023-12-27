@@ -124,7 +124,7 @@ function Home({navigation, route}) {
               <TouchableOpacity onPress={() => {navigation.navigate("FertilizationSchedule", {"schedule" : hydroponicConfigContext.config.fertilizationSchedule})}} style={{borderRadius: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#DEDEDE', padding: 5, paddingHorizontal: 10}}>
                 <View>
                   <Text style={{fontFamily: 'Poppins-SemiBold', fontSize: 14}}>Pemberian Pupuk Cair</Text>
-                  <Text style={{fontFamily: 'Poppins-Medium', fontSize: 14, color: '#1cc62b'}}>{getFormattedDate(hydroponicConfigContext.config.fertilizationSchedule.startDate)}, pukul 6:00</Text>
+                  <Text style={{fontFamily: 'Poppins-Medium', fontSize: 14, color: '#1cc62b'}}>{getFormattedDate(hydroponicConfigContext.config.fertilizationSchedule.startDate)}, pukul {getFormattedTime(hydroponicConfigContext.config.fertilizationSchedule.fertilizationTime)}</Text>
                 </View>
                 <ChevronRightIcon />
               </TouchableOpacity>
