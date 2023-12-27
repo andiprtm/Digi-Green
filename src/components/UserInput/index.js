@@ -48,8 +48,8 @@ function Index({label,type,value,onChange}) {
                 <View style={customStylePassword}>
                     <TextInput
                         secureTextEntry={!showPassword}
-                        value={password}
-                        onChangeText={setPassword}
+                        value={value}
+                        onChangeText={onChange}
                         style={styles.input}
                         placeholder="Enter Password"
                         placeholderTextColor="#aaa"

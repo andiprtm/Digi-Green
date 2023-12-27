@@ -14,6 +14,8 @@ import {WEATHER_API} from "../../config/OpenWeather";
 SplashScreen.preventAutoHideAsync();
 
 function Login({navigation}) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const insets = useSafeAreaInsets()
   const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../../assets/font/Poppins-Regular.ttf'),
@@ -54,16 +56,23 @@ function Login({navigation}) {
           setIsLoading(false)
         })
   }
+  
+  console.log(username)
 
   const onSubmit = () => {
-    setIsLoading(true)
-    Location.getCurrentPositionAsync({accuracy: Accuracy.High})
-        .then(r => getWeatherAPI({lat: r.coords.latitude, lon: r.coords.longitude}))
-        .catch(() => {
-          alert('failed to get current location!')
-          setIsLoading(false)
-        })
-  }
+    if (username === 'digimin' && password === 'Digiword3!') {
+      setIsLoading(true);
+      Location.getCurrentPositionAsync({ accuracy: Accuracy.High })
+          .then((r) => getWeatherAPI({ lat: r.coords.latitude, lon: r.coords.longitude }))
+          .catch(() => {
+            alert('Failed to get current location!');
+            setIsLoading(false);
+          });
+    } else {
+      // Menampilkan pesan alert jika username atau password salah
+      alert({username} + {password});
+    }
+  };
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -88,9 +97,9 @@ function Login({navigation}) {
               <Text style={{fontFamily: "Poppins-Medium", fontSize: 15, textAlign: "center"}}>Yuk masuk ke aplikasi dan segera pantau hidroponikmu</Text>
             </View>
             <Separator height={61}/>
-            <UserInput label={"Username"} type={"Basic"}/>
+            <UserInput label={"Username"} type={"Basic"} onChange={(text) => setUsername(text)} />
             <Separator height={5}/>
-            <UserInput label={"Password"} type={"Password"} />
+            <UserInput label={"Password"} type={"Password"} onChange={(text) => setPassword(text)} />
             <Separator height={61}/>
             <PrimaryButton text="LOGIN" onPress={onSubmit}/>
           </View>
