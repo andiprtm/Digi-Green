@@ -42,6 +42,10 @@ function MinMaxPPM({ navigation, route }) {
     navigation.goBack();
   }
 
+  if (hydroponicConfigContext.loading) {
+    return <LoadingOverlay />;
+  }
+
   return (
     <View style={styles.screenContainer}>
       <Text style={styles.text}>
