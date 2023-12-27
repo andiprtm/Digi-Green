@@ -52,7 +52,7 @@ function Home({navigation, route}) {
                 <Text style={{fontFamily: 'Poppins-Medium', fontSize: 13}}>Selasa, 26 Desember 2023</Text>
               </View>
             </View>
-            <TouchableOpacity style={{alignItems: 'center', justifyContent: 'center', padding: 10, backgroundColor: 'white'}}>
+            <TouchableOpacity onPress={navigation.goBack} style={{alignItems: 'center', justifyContent: 'center', padding: 10, backgroundColor: 'white'}}>
               <DoorOutIcon />
             </TouchableOpacity>
           </View>
