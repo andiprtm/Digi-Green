@@ -3,6 +3,7 @@ import { PrimaryButton, Separator, ColoredInput, LoadingOverlay } from '../../co
 import { useContext, useState } from 'react';
 import { HydroponicConfigContext } from '../../config/Context';
 
+
 function MinMaxPPM({ navigation, route }) {
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
   const PPM = route.params.PPM;
@@ -58,6 +59,8 @@ function MinMaxPPM({ navigation, route }) {
         value={valuePPM.minimum.toString()}
         onChangeText={(text) => changeMinMaxPPMHandler('minimum', text)}
         label={"Minimum PPM"}
+        editable={true}
+        focus={true}
       />
       <ColoredInput
         label="Maksimum PPM"
@@ -65,6 +68,8 @@ function MinMaxPPM({ navigation, route }) {
         placeholder="Maksimum PPM"
         value={valuePPM.maximum.toString()}
         onChangeText={(text) => changeMinMaxPPMHandler('maximum', text)}
+        editable={true}
+        focus={true}
       />
       <Separator height={16}></Separator>
       <PrimaryButton text="Update" onPress={submitMinMaxPPMHandler} />
