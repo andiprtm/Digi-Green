@@ -1,11 +1,11 @@
 import React, {useContext, useState} from 'react';
-import {Alert, StyleSheet, Text, View} from "react-native";
+import {Alert, StyleSheet, Switch, Text, View} from "react-native";
 import {HydroponicConfigContext} from "../../config/Context";
 import {ColoredInput, PrimaryButton, Separator, TimePickContainer} from "../../components";
 import getFormattedDate from "../../utils/date";
 import getFormattedTime from "../../utils/time";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import date from "../../utils/date";
+import GlobalStyles from "../../styles/GlobalStyles";
 
 function Index({navigation, route}) {
 
@@ -21,6 +21,11 @@ function Index({navigation, route}) {
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+    const [otoStatus, setOtoStatus] = useState(schedule.numberOfDays !== "0");
+
+    function toggleStatusHandler() {
+        setOtoStatus((prevStatus) => !prevStatus);
+    }
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
@@ -77,8 +82,10 @@ function Index({navigation, route}) {
     }
 
     function submitScheduleHandler() {
+
+
         const updateSchedule = {
-            numberOfDays: schedule.numberOfDays,
+            numberOfDays: otoStatus ? schedule.numberOfDays : "0",
             startDate: schedule.startDate,
             fertilizationTime: schedule.fertilizationTime,
         };
@@ -86,7 +93,7 @@ function Index({navigation, route}) {
         console.log(updateSchedule.numberOfDays)
 
         if (
-            updateSchedule.numberOfDays <= 0 || isNaN(updateSchedule.numberOfDays)
+            updateSchedule.numberOfDays < 0 || isNaN(updateSchedule.numberOfDays)
         ) {
             Alert.alert(
                 'Nilai tidak valid',
@@ -109,12 +116,27 @@ function Index({navigation, route}) {
             </Text>
             <Separator height={24}/>
 
+            <Text style={styles.text2}>Nyalakan atau matikan pompa</Text>
+            <Separator height={16} />
+            <View style={styles.pumpStatusContainer}>
+                <Text style={styles.pumpStatusContainer.text}>Status pemupukan otomatis</Text>
+                <Switch
+                    value={otoStatus}
+                    onChange={toggleStatusHandler}
+                    thumbColor={GlobalStyles.colors.primary}
+                    trackColor={GlobalStyles.colors.inversePrimary}
+                />
+            </View>
+            <Separator height={16} />
+
             <ColoredInput
                 label={"Rentang hari pemupukan"}
                 keyboardType="decimal-pad"
                 placeholder="Masukkan rentang hari pemupukan"
-                value={schedule.numberOfDays}
+                value={otoStatus ? schedule.numberOfDays : "0"}
                 onChangeText={(text) => changeNumberOfDays(text)}
+                focus={otoStatus}
+                editable={otoStatus}
             />
 
             <Separator height={12}/>
@@ -168,5 +190,18 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "Poppins-Medium",
-    }
+    },
+    text2: {
+        fontFamily: 'Poppins-SemiBold',
+        color: 'gray',
+    },
+    pumpStatusContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        text: {
+            fontFamily: 'Poppins-SemiBold',
+            color: GlobalStyles.colors.primary,
+        },
+    },
 })

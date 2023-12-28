@@ -5,6 +5,7 @@ import TimePickContainer from './TimePickContainer';
 import ColoredInput from './ColoredInput';
 import Loading from './Loading';
 import LoadingOverlay from './LoadingOverlay';
+import InformationCard from "./InformationCard";
 
 export {
   Separator,
@@ -14,4 +15,5 @@ export {
   ColoredInput,
   Loading,
   LoadingOverlay,
+  InformationCard,
 };

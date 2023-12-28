@@ -5,7 +5,7 @@ import {useFonts} from "expo-font";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {StatusBar} from "expo-status-bar";
 import {ChevronRightIcon, DoorOutIcon, PinPointIcon} from "../../assets/svgs";
-import {Separator} from "../../components";
+import {InformationCard, Separator} from "../../components";
 import getFormattedTime from '../../utils/time';
 import getFormattedDate from '../../utils/date'
 import { HydroponicConfigContext } from '../../config/Context';
@@ -74,29 +74,17 @@ function Home({navigation, route}) {
           <View style={{marginTop: 25}}>
             <Text style={{fontFamily: 'Poppins-Bold', fontSize: 18}}>Informasi Umum</Text>
             <View style={{flexDirection: 'row', gap: 15, justifyContent: 'center', marginTop: 10}}>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>Temperatur</Text>
-              </View>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>Humidity</Text>
-              </View>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>Fertilization Capacity</Text>
-              </View>
+              <InformationCard text={"temperature"} value={Math.round(weatherData.main.temp)+"°C"} />
+              <InformationCard text={"Humidity"} value={10}/>
+              <InformationCard text={"Fertil Tank"} value={"Low"}/>
             </View>
           </View>
           <View style={{marginTop: 25}}>
             <Text style={{fontFamily: 'Poppins-Bold', fontSize: 18}}>Sistem Kontrol</Text>
             <View style={{flexDirection: 'row', gap: 15, justifyContent: 'center', marginTop: 10}}>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>Temperatur</Text>
-              </View>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>Humidity</Text>
-              </View>
-              <View style={{width: 84, height: 84, alignContent: 'center', justifyContent: 'center', backgroundColor: 'white', borderRadius: 16, borderWidth: 1, borderColor: '#DEDEDE'}}>
-                <Text style={{textAlign: 'center'}}>PPM</Text>
-              </View>
+              <InformationCard text={"PPM"} value={30}/>
+              <InformationCard text={"Water Level"} value={80}/>
+              <InformationCard text={"PH"} value={60}/>
             </View>
           </View>
           <View style={{marginTop: 25}}>

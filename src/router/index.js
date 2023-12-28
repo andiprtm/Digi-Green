@@ -58,14 +58,14 @@ const Router = () => {
           headerTitle: 'Jam Hidup Pompa',
         }}
       />
-      <Stack.Screen
-          name="FertilizationSchedule"
-          component={FertilizationSchedule}
-          options={{
-              headerShown: true,
-              headerTitle: 'Pemberian Pupuk Cair',
-          }}
-      />
+        <Stack.Screen
+            name="FertilizationSchedule"
+            component={FertilizationSchedule}
+            options={{
+                headerShown: true,
+                headerTitle: 'Pemberian Pupuk Cair',
+            }}
+        />
     </Stack.Navigator>
   );
 };
