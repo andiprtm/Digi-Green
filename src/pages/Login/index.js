@@ -58,13 +58,13 @@ function Login({navigation}) {
         })
   }
 
-  console.log(username)
-
   const onSubmit = () => {
     if (username === 'digimin' && password === 'Digiword3!') {
       setIsLoading(true);
-      Location.getCurrentPositionAsync({ accuracy: Accuracy.High })
-          .then((r) => getWeatherAPI({ lat: r.coords.latitude, lon: r.coords.longitude }))
+      Location.getCurrentPositionAsync({ accuracy: Accuracy.Low })
+          .then((r) => {
+            return getWeatherAPI({ lat: r.coords.latitude, lon: r.coords.longitude })
+          })
           .catch(() => {
             alert('Failed to get current location!');
             setIsLoading(false);
