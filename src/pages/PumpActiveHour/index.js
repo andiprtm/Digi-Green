@@ -4,8 +4,11 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import getFormattedTime from '../../utils/time';
 import { LoadingOverlay, PrimaryButton, Separator, TimePickContainer } from '../../components';
 import { HydroponicConfigContext } from '../../config/Context';
+import {showToast} from "../../utils/toast";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 function PumpActiveHour({ navigation, route }) {
+    const insets = useSafeAreaInsets()
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
   const pumpActiveRangeHour = route.params.range;
   const [rangeHour, setRangeHour] = useState({
@@ -49,14 +52,13 @@ function PumpActiveHour({ navigation, route }) {
       (updatedRangeHour.startTime.hour === updatedRangeHour.endTime.hour &&
         updatedRangeHour.startTime.minute >= updatedRangeHour.endTime.minute)
     ) {
-      Alert.alert(
-        'Range Tidak Valid',
-        'Jam nyala pompa harus sebelum jam mati pompa'
-      );
+        showToast('Range Tidak Valid', 'danger','Jam nyala pompa harus sebelum jam mati pompa', insets.top);
       return;
     }
 
     hydroponicConfigContext.setConfig('pumpActiveRangeHour', updatedRangeHour);
+
+    showToast('Berhasil', 'success','data telah berhasil dirubah', insets.top);
 
     navigation.goBack();
   }

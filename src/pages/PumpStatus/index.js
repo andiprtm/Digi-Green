@@ -3,8 +3,11 @@ import { StyleSheet, Switch, Text, View } from 'react-native';
 import { LoadingOverlay, PrimaryButton, Separator } from '../../components';
 import GlobalStyles from '../../styles/GlobalStyles';
 import { HydroponicConfigContext } from '../../config/Context';
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {showToast} from "../../utils/toast";
 
 function PumpStatus({ navigation, route }) {
+  const insets = useSafeAreaInsets()
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
   const status = route.params.status;
 
@@ -16,6 +19,7 @@ function PumpStatus({ navigation, route }) {
 
   function submitPumpStatusHandler() {
     hydroponicConfigContext.setConfig('pumpStatus', pumpStatus);
+    showToast('Berhasil', 'success','data telah berhasil dirubah', insets.top);
     navigation.goBack();
   }
 

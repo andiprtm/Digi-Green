@@ -71,7 +71,7 @@ function Login({navigation}) {
           });
     } else {
       // Menampilkan pesan alert jika username atau password salah
-      showToast('Username/password salah!', 'danger', insets.top);
+      showToast('Username/password salah!', 'danger', 'silahkan isi dengan benar',insets.top);
     }
   };
 

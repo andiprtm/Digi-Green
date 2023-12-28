@@ -79,8 +79,7 @@ function Home({navigation, route}) {
               <InformationCard text={"Fertil Tank"} value={"Low"}/>
             </View>
           </View>
-          <View style={{marginTop: 25}}>
-            <Text style={{fontFamily: 'Poppins-Bold', fontSize: 18}}>Sistem Kontrol</Text>
+          <View style={{marginTop: 16}}>
             <View style={{flexDirection: 'row', gap: 15, justifyContent: 'center', marginTop: 10}}>
               <InformationCard text={"PPM"} value={30}/>
               <InformationCard text={"Water Level"} value={80}/>

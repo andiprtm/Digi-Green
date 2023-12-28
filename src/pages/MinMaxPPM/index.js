@@ -2,9 +2,12 @@ import { Alert, StyleSheet, Text, View } from 'react-native';
 import { PrimaryButton, Separator, ColoredInput, LoadingOverlay } from '../../components';
 import { useContext, useState } from 'react';
 import { HydroponicConfigContext } from '../../config/Context';
+import {showToast} from "../../utils/toast";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 
 function MinMaxPPM({ navigation, route }) {
+  const insets = useSafeAreaInsets()
   const hydroponicConfigContext = useContext(HydroponicConfigContext);
   const PPM = route.params.PPM;
   const [valuePPM, setValuePPM] = useState({
@@ -28,10 +31,7 @@ function MinMaxPPM({ navigation, route }) {
       valuePPM.minimum < valuePPM.maximum;
 
     if (!isPPMValid) {
-      Alert.alert(
-        'Nilai PPM Tidak Valid',
-        'Harap masukkan nilai PPM antara 1 dan 100 dan minimum PPM harus lebih kecil dari maksimum PPM.'
-      );
+      showToast('Nilai PPM Tidak Valid', 'danger','Harap masukkan nilai PPM antara 1 dan 100 dan minimum PPM harus lebih kecil dari maksimum PPM.', insets.top);
       return;
     }
 
@@ -39,6 +39,8 @@ function MinMaxPPM({ navigation, route }) {
       minimum: parseInt(valuePPM.minimum),
       maximum: parseInt(valuePPM.maximum),
     });
+
+    showToast('Berhasil', 'success','data telah berhasil dirubah', insets.top);
 
     navigation.goBack();
   }

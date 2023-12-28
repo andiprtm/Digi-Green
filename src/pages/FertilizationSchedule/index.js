@@ -6,8 +6,11 @@ import getFormattedDate from "../../utils/date";
 import getFormattedTime from "../../utils/time";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import GlobalStyles from "../../styles/GlobalStyles";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {showToast} from "../../utils/toast";
 
 function Index({navigation, route}) {
+    const insets = useSafeAreaInsets()
 
     const today = new Date();
 
@@ -93,16 +96,14 @@ function Index({navigation, route}) {
         console.log(updateSchedule.numberOfDays)
 
         if (
-            updateSchedule.numberOfDays < 0 || isNaN(updateSchedule.numberOfDays)
+            (updateSchedule.numberOfDays < 0 || isNaN(updateSchedule.numberOfDays))
         ) {
-            Alert.alert(
-                'Nilai tidak valid',
-                'nilai hari harus lebih dari 0'
-            );
+            showToast('Nilai tidak valid', 'danger','nilai hari harus lebih dari 0', insets.top);
             return;
         }
 
         hydroponicConfigContext.setConfig('fertilizationSchedule', updateSchedule);
+        showToast('Berhasil', 'success','data telah berhasil dirubah', insets.top);
 
         navigation.goBack();
     }
