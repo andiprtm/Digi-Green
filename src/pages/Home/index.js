@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect} from 'react';
+import React, {useCallback, useContext,} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView, StyleSheet} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import {useFonts} from "expo-font";
@@ -67,7 +67,7 @@ function Home({navigation, route}) {
                 <Text style={{fontFamily: 'Poppins-SemiBold', fontSize: 15, color: 'white'}}>{weatherData.name}</Text>
               </View>
             </View>
-            <View style={{justifyContent: 'center', borderRadius: 16, width: '45  %', backgroundColor: '#C7F9CC', alignItems: "center"}}>
+            <View style={{justifyContent: 'center', borderRadius: 16, width: '45%', backgroundColor: '#C7F9CC', alignItems: "center"}}>
               <Image style={{width: 150, height: 100}} source={{uri: `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}}/>
             </View>
           </View>
@@ -75,15 +75,15 @@ function Home({navigation, route}) {
             <Text style={{fontFamily: 'Poppins-Bold', fontSize: 18}}>Informasi Umum</Text>
             <View style={{flexDirection: 'row', gap: 15, justifyContent: 'center', marginTop: 10}}>
               <InformationCard text={"temperature"} value={Math.round(weatherData.main.temp)+"°C"} />
-              <InformationCard text={"Humidity"} value={10}/>
-              <InformationCard text={"Fertil Tank"} value={"Low"}/>
+              <InformationCard text={"Humidity"} value={"48%"}/>
+              <InformationCard text={"Fertil Tank"} value={"200 ml"}/>
             </View>
           </View>
           <View style={{marginTop: 16}}>
             <View style={{flexDirection: 'row', gap: 15, justifyContent: 'center', marginTop: 10}}>
               <InformationCard text={"PPM"} value={30}/>
-              <InformationCard text={"Water Level"} value={80}/>
-              <InformationCard text={"PH"} value={60}/>
+              <InformationCard text={"Water Level"} value={"80%"}/>
+              <InformationCard text={"PH"} value={6}/>
             </View>
           </View>
           <View style={{marginTop: 25}}>

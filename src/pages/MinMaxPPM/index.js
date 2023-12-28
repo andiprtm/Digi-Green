@@ -24,10 +24,8 @@ function MinMaxPPM({ navigation, route }) {
 
   function submitMinMaxPPMHandler() {
     const isPPMValid =
-      valuePPM.minimum > 0 &&
-      valuePPM.minimum <= 100 &&
-      valuePPM.maximum > 0 &&
-      valuePPM.maximum <= 100 &&
+      valuePPM.minimum >= 0 &&
+      valuePPM.maximum >= 0  &&
       valuePPM.minimum < valuePPM.maximum;
 
     if (!isPPMValid) {
