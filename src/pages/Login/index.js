@@ -10,6 +10,7 @@ import {Accuracy} from "expo-location";
 import {LogoOnly} from "../../assets/svgs";
 import axios from "axios";
 import {WEATHER_API} from "../../config/OpenWeather";
+import {showToast} from "../../utils/toast";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -56,7 +57,7 @@ function Login({navigation}) {
           setIsLoading(false)
         })
   }
-  
+
   console.log(username)
 
   const onSubmit = () => {
@@ -70,7 +71,7 @@ function Login({navigation}) {
           });
     } else {
       // Menampilkan pesan alert jika username atau password salah
-      alert({username} + {password});
+      showToast('Username/password salah!', 'danger', insets.top);
     }
   };
 
